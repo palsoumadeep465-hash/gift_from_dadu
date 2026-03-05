@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body,html{
+    height:100%;
+    overflow-x:hidden;
+}
+
+/* ================= PAGE SECTION ================= */
+.section{
+    height:100vh;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    position:relative;
+}
+
+/* ================= PAGE 1 ================= */
+#page1{
+    background:
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 240, 245, 0.7)),
+    url('https://images.unsplash.com/photo-1490750967868-88aa4486c946') no-repeat center center/cover;
+}
+
+.content{
+    max-width:750px;
+}
+
+.title{
+    font-family: 'Great Vibes', cursive;
+    font-size:clamp(40px,6vw,70px);
+    color:#c2185b;
+    margin-bottom:20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.subtitle{
+    font-size:clamp(16px,2vw,22px);
+    margin-bottom:25px;
+    color:#4a4a4a;
+}
+
+.countdown{
+    font-size:clamp(18px,2vw,22px);
+    margin-bottom:25px;
+    color:#b71c1c;
+    font-weight:500;
+}
+
+button{
+    padding:14px 32px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff4e88,#ff80ab);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ================= PAGE 2 ================= */
+#page2{
+    background:
+    linear-gradient(rgba(255,255,255,0.75), rgba(255,240,245,0.85)),
+    url('https://images.unsplash.com/photo-1526045612212-70caf35c14df') no-repeat center center/cover;
+    display:none;
+    flex-direction:column;
+}
+
+/* Photo Frame */
+.photo-frame{
+    width:90%;
+    max-width:420px;
+    height:420px;
+    border:12px solid #d4af37;
+    border-radius:25px;
+    overflow:hidden;
+    margin-bottom:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Question Text */
+.question{
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(32px,5vw,60px);
+    color:#ad1457;
+    margin-bottom:15px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.footer-text{
+    font-size:16px;
+    color:#555;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    .photo-frame{
+        height:300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="section" id="page1">
+    <div class="content">
+        <div class="title">Dear Ananya </div>
+        <div class="subtitle">
+            These past three years have proven that our bond transcends mere friendship; we are best friends. I aspire for you to be a part of not just my college memories, but every significant chapter of my life. ✨
+        </div>
+
+        <div class="countdown" id="countdown">
+            ⏳ Countdown to Our 3 Beautiful Years Together
+        </div>
+
+        <button onclick="openPage2()">✨ Click for Something Magical ✨</button>
+    </div>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="section" id="page2">
+    <div class="photo-frame">
+        <!-- Replace this image with your special photo -->
+        <img src="D:\Do you love me\love\IMG_20260225_215444.jpg.jpeg" alt="Our Photo">
+    </div>
+
+    <div class="question">💖 Will You Be My Best Friend Again? ✨</div>
+    <div class="footer-text">Forever isn't long enough with you… 💞</div>
+</section>
+
+<script>
+
+let startDate = new Date();
+let endDate = new Date();
+endDate.setFullYear(startDate.getFullYear() + 3); // 3 years later
+
+function updateCountdown(){
+
+    let now = new Date();
+
+    let years = endDate.getFullYear() - now.getFullYear();
+    let months = endDate.getMonth() - now.getMonth();
+    let days = endDate.getDate() - now.getDate();
+    let hours = endDate.getHours() - now.getHours();
+    let minutes = endDate.getMinutes() - now.getMinutes();
+    let seconds = endDate.getSeconds() - now.getSeconds();
+
+    if(seconds < 0){
+        seconds += 60;
+        minutes--;
+    }
+
+    if(minutes < 0){
+        minutes += 60;
+        hours--;
+    }
+
+    if(hours < 0){
+        hours += 24;
+        days--;
+    }
+
+    if(days < 0){
+        let lastMonth = new Date(now.getFullYear(), now.getMonth()+1, 0);
+        days += lastMonth.getDate();
+        months--;
+    }
+
+    if(months < 0){
+        months += 12;
+        years--;
+    }
+
+    document.getElementById("countdown").innerHTML =
+        years + " Years " +
+        months + " Months " +
+        days + " Days <br>" +
+        hours + " Hours " +
+        minutes + " Minutes " +
+        seconds + " Seconds";
+
+}
+
+setInterval(updateCountdown,1000);
+
+
+function openPage2(){
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").style.display="flex";
+}
+</script>
+
+</body>
+</html>
